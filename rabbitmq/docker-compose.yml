@@ -1,0 +1,28 @@
+
+version: '2.1'
+services:
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY:-registry.docker.local}/rabbitmq:3.6.5
+    ports:
+    - "15672:15672"
+    #- "25672:25672"
+    #- "4369:4369"
+    #- "5671:5671"
+    - "5672:5672"
+    environment:
+    - RABBITMQ_HIPE_COMPILE=0
+    - RABBITMQ_DEFAULT_USER=${SPRING_RABBITMQ_USERNAME:-user}
+    - RABBITMQ_DEFAULT_PASS=${SPRING_RABBITMQ_PASSWORD:-user_pass}
+    volumes:
+    - rabbitmq-volume:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq-volume: {}
+
+networks:
+  default:
+    external:
+      name: oss-network
