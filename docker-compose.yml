@@ -3,9 +3,11 @@ version: '2.1'
 services:
   cloudbus:
     restart: always
+
+
     container_name: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
     hostname: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
-    image: ${DOCKER_REGISTRY:-registry.docker.local}/rabbitmq:3.6.5-management
+    image: ${DOCKER_REGISTRY:-home1oss}/rabbitmq:3.6.5-management
     ports:
     - "15672:15672"
     #- "25672:25672"
