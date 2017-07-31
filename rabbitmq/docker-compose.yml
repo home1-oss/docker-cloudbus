@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
-    hostname: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
+    container_name: ${SERVICES_CLOUDBUS_DOMAIN:-cloudbus}.${INFRASTRUCTURE:-local}
+    hostname: ${SERVICES_CLOUDBUS_DOMAIN:-cloudbus}.${INFRASTRUCTURE:-local}
     image: ${DOCKER_REGISTRY:-home1oss}/rabbitmq:3.6.5
     ports:
     - "15672:15672"
