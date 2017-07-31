@@ -19,10 +19,10 @@ services:
     - RABBITMQ_DEFAULT_PASS=${SPRING_RABBITMQ_PASSWORD:-user_pass}
     - RABBITMQ_HIPE_COMPILE=0
     volumes:
-    - rabbitmq-volume:/var/lib/rabbitmq
+    - volume-rabbitmq:/var/lib/rabbitmq
 
 volumes:
-  rabbitmq-volume: {}
+  volume-rabbitmq: {}
 
 networks:
   default:

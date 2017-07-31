@@ -5,8 +5,8 @@ services:
     restart: always
 
 
-    container_name: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
-    hostname: ${SERVICES_CLOUDBUS_HOST_NAME:-cloudbus.local}
+    container_name: ${SERVICES_CLOUDBUS_DOMAIN:-cloudbus}.${INFRASTRUCTURE:-local}
+    hostname: ${SERVICES_CLOUDBUS_DOMAIN:-cloudbus}.${INFRASTRUCTURE:-local}
     image: ${DOCKER_REGISTRY:-home1oss}/rabbitmq:3.6.5-management
     ports:
     - "15672:15672"
@@ -19,10 +19,10 @@ services:
     - RABBITMQ_DEFAULT_PASS=${CLOUDBUS_PASS:-user_pass}
     - RABBITMQ_HIPE_COMPILE=0
     volumes:
-    - cloudbus-volume:/var/lib/rabbitmq
+    - volume-cloudbus:/var/lib/rabbitmq
 
 volumes:
-  cloudbus-volume: {}
+  volume-cloudbus: {}
 
 networks:
   default:
